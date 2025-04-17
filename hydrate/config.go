@@ -11,11 +11,13 @@ const ConfigFileName = ".hydrate.json"
 // StartTime should be morning and EndTime should be Night
 // Assumed StartTime with AM and EndTime with PM
 type Config struct {
-	StartTime   int     `json:"start_time"`
-	EndTime     int     `json:"end_time"`
-	Liters      float32 `json:"liters"`
-	milliLiters int
-	Step        int `json:"step"`
+	StartTime int     `json:"start_time"`
+	EndTime   int     `json:"end_time"`
+	Liters    float32 `json:"liters"`
+	Step      int     `json:"step"`
+
+	milliLiters  int
+	stepDuration int
 }
 
 // Parse the Config, Assumed .hydrate.json on home

@@ -1,7 +1,6 @@
 package hydrate
 
 type Event struct {
-	Time      int
 	Step      int
 	Remaining int
 }
@@ -21,9 +20,10 @@ func ScheduleEvents(Cfg *Config) ([]Event, error) {
 
 	stepDuration := totalMinutes / totalSteps
 
+	Cfg.stepDuration = stepDuration
+
 	// For every stepDuration, we have to notify the user starting from the endtime
 	var events []Event
-	lastStep := 0
 
 	unallocatedStep := unallocated / (totalSteps / 2)
 
@@ -33,7 +33,6 @@ func ScheduleEvents(Cfg *Config) ([]Event, error) {
 	for step := 0; step < totalSteps; step++ {
 
 		e := Event{
-			Time:      lastStep,
 			Step:      Cfg.Step,
 			Remaining: rem - Cfg.Step,
 		}
@@ -46,7 +45,6 @@ func ScheduleEvents(Cfg *Config) ([]Event, error) {
 
 		events = append(events, e)
 		rem = rem - e.Step
-		lastStep += stepDuration
 	}
 
 	return events, nil

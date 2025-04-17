@@ -17,9 +17,11 @@ func main() {
 
 	}
 
-	_, err = hydrate.ScheduleEvents(Cfg)
+	events, err := hydrate.ScheduleEvents(Cfg)
 	if err != nil {
 		panic("error in scheduling events: " + err.Error())
 	}
+
+	hydrate.EndlessRun(Cfg, events)
 
 }
